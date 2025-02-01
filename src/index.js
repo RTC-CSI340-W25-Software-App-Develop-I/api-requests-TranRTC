@@ -26,7 +26,7 @@ const restaurant = {
 const getData = async () => {
   const res = await fetch("http://localhost:3000/restaurants");
   const data = await res.json();
-  console.log(data); // check in the console of the browser. Response data is list of 5 restaurants sent from server
+  console.log(data); // check in the browser console to see the response data which is list of 5 restaurants sent from back-end: Array[5]
 };
 
 
@@ -41,12 +41,12 @@ const postData = async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(restaurant), // restaurant 6 sent to back-end
+    body: JSON.stringify(restaurant), // prepare data of restaurant 6 to send to back-end
   });
-  console.log(res.body); // check the browser console to see the response body
+  console.log(res.body); // check the browser console to see the data being sent in the request.body: ReadableStream
   const data = await res.json();
-  console.log(data); // check the browser console to see the data sent from back-end which is list of 6 (5 + 1sent from front end) restaurants
-  getData();
+  console.log(data); // check the browser console to see data object being sent (restaurant 6): Object
+  getData(); // check the browser console to see the update list of 6 restaurant from back-end. 5 from back-end + 1 sent from front-end to back-end: Array[6]
 };
 
 // send post request and process the response
