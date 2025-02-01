@@ -1,3 +1,4 @@
+// prepare data for sending to server
 const restaurant = {
   id: 6,
   name: "Bella Bistro",
@@ -20,24 +21,33 @@ const restaurant = {
     { item: "Tiramisu", price: 6.99 },
   ],
 };
+
+// define method which uses the Fetch API to send a GET request and process the response
 const getData = async () => {
   const res = await fetch("http://localhost:3000/restaurants");
   const data = await res.json();
-  console.log(data);
+  console.log(data); // check in the console of the browser. Response data is list of 5 restaurants sent from server
 };
+
+
+// send get request and process response
 getData();
 
+
+// define method which use Fetch API to send post request and process the response
 const postData = async () => {
   const res = await fetch("http://localhost:3000/restaurants", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(restaurant),
+    body: JSON.stringify(restaurant), // restaurant 6 sent to back-end
   });
-  console.log(res.body);
+  console.log(res.body); // check the browser console to see the response body
   const data = await res.json();
-  console.log(data);
+  console.log(data); // check the browser console to see the data sent from back-end which is list of 6 (5 + 1sent from front end) restaurants
   getData();
 };
+
+// send post request and process the response
 postData();
